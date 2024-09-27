@@ -1,0 +1,96 @@
+Control Structure in Python
+
+Problem:1
+
+Sales Data Analysis for a Retail Store
+
+Background:
+    A retail store wants to analyze its monthly sales date to understand trends, identify top-selling products, and make data-driven decisions. The start collects data on the number of units sold for each product, along with the prices and categories of the products. The management wants to automate the analysis process using a Python sort
+
+Objective:
+    Create a Python program that reads sales data, processes it, and provides insights such as total ssles, average sales per product, top-seling products, and sales by category. The program should use appropriate data types and control structures (loops, conditionals, etc.) to accomplish these tasks.
+
+Sales Data Format:
+
+The sales date is stored in a list of dictionaries, where each dictionary contains information about a single product's saies. The keys in each dictionary are:
+    "product name: The name of the product Istring
+    "category": The category the product belongs to (string).
+    "units sold": The number of units soid (integer).
+    "unit price": The price per unit (float).
+
+
+Problem: 2
+
+Student Grades Management System
+
+Background:
+    A university wants to develop a system to manage and analyze student grades for different courses. The system should be able to store stucams grades, calculate their overall erformance, determine the highest and lowest scorta, and categorize students based on their performance.
+
+Objective:
+    Create a Python program that manages student grades, performs various calculations, and provides insights such as the average grene, the tou performing students, and grade distribution.
+
+Student Dato Format:
+
+The student data is stored in a list of dictionaries, where each dictionary contains:
+    "student_name": The name of the studen: (sing).
+    "grades": A dictionary with course names as keys and grades as values (float).
+
+Example: {"student_name": "Ankur", "grades": ["Math": 85, "Science": 92, "English": 78]},
+
+
+
+
+Problem 3:
+
+Library Management System
+
+Background:
+
+A small community library needs a system to manage its book collection and track book chenkouts. The system should allow the librery co store information about books, track which Looks ars checked out, and provide summaries such as the total number of books available, the most borrowed books, and overdue books.
+
+Objective:
+
+Create a Python program that manages a ibrary's book collection, tracks checkouts, and provides insights into the ilorary's usage.
+
+Book Data Format:
+
+The book data is stored in a list of dictionaries, where each dictionary contains:
+
+"title": The title of the book (string).
+
+"author": The author of the book (string).
+
+"checked_out": Boolean value indicating wether the book is currently checked out.
+
+"due dete": The due date for the bock (if checked out) as a string in the format YYYY- MM-DD.
+
+
+
+
+Problem 4:
+
+Employee Attendance Tracker
+
+Background:
+
+A company wants to monitor employee attendance and analyze attendance patterns. The company needs a system that records when emplovens clock in and clock out, calculates the tai hour worked each day, and identifies employee with the highest and lowest attendance.
+
+Objective:
+
+Create e Fython program that records and analyzes cumployee attendance, providing insights such as total hours worked, employees with perfect attendance, and those with the most absunces
+
+Attendance Date Format:
+
+The attendance data is stored in a list of dictioneries, where each dictionary contains:
+
+"employee_name": The neme of the employes (string).
+
+"attendance": A dictionary with dates as bar and tuples of clock-in and clock-out times as velues (strings in HH:MM format).
+
+Example ciata:
+
+"employee name": "Rajash Deshpande", "attensament (2024-08-15": ("09:00", "17:00"), "2024-08-16": "09:15", "17:10")
+
+
+
+
