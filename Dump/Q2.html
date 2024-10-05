@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="concatenateApp">
+<head>
+    <title>String Concatenation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body ng-controller="ConcatenateController">
+
+    <div class="currency-container">
+        <h2>String Concatenation</h2>
+
+        <div class="input-group">
+            <label for="string1">Enter First String:</label>
+            <input type="text" id="string1" ng-model="string1" placeholder="First String">
+        </div>
+
+        <div class="input-group">
+            <label for="string2">Enter Second String:</label>
+            <input type="text" id="string2" ng-model="string2" placeholder="Second String">
+        </div>
+
+        <div class="result-box">
+            {{ concatenateStrings() }}
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('concatenateApp', []);
+        app.controller('ConcatenateController', function($scope) {
+            $scope.string1 = '';
+            $scope.string2 = '';
+
+            $scope.concatenateStrings = function() {
+                return $scope.string1 + ' ' + $scope.string2;
+            };
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="registrationApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        fieldset {
+            border: none;
+        }
+
+        label {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="file"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Styling */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            form {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+
+            table, th, td {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body ng-controller="RegistrationController">
+    <div>
+        <h2>User Registration Form</h2>
+        <form name="registrationForm" ng-submit="addUser()" novalidate>
+            <fieldset>
+                <label for="collegeImage">College Image:</label>
+                <input type="file" id="collegeImage" name="collegeImage" file-model="user.collegeImage" />
+
+                <label for="userId">User ID (required):</label>
+                <input type="text" id="userId" ng-model="user.userId" required />
+                <span class="error" ng-show="registrationForm.userId.$touched && !user.userId">User ID is required.</span>
+
+                <label for="name">Name (required):</label>
+                <input type="text" id="name" ng-model="user.name" required />
+                <span class="error" ng-show="registrationForm.name.$touched && !user.name">Name is required.</span>
+
+                <label for="address">Address:</label>
+                <textarea id="address" ng-model="user.address" rows="3"></textarea>
+
+                <label for="department">Department:</label>
+                <select id="department" ng-model="user.department">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Data_Science">Data Science</option>
+                    <option value="Computer_Application">Computer Application</option>
+                </select>
+
+                <label for="course">Course:</label>
+                <select id="course" ng-model="user.course">
+                    <option value="Bachelors">Bachelors</option>
+                    <option value="Masters">Masters</option>
+                    <option value="PhD">PhD</option>
+                </select>
+
+                <button type="submit" ng-disabled="registrationForm.$invalid">Submit</button>
+            </fieldset>
+        </form>
+
+        <h2>Submitted Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Department</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.userId}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.address}}</td>
+                    <td>{{user.department}}</td>
+                    <td>{{user.course}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="error" ng-show="registrationForm.$invalid">Please fill out the required fields: User ID and Name.</p>
+    </div>
+
+    <script>
+        var app = angular.module('registrationApp', []);
+
+        app.controller('RegistrationController', function($scope) {
+            $scope.users = [
+                { userId: '1001', name: 'Avinash Sarode', address: 'Pune', department: 'Computer Science', course: 'Bachelors' },
+                { userId: '1002', name: 'Ajinkya Solnakar', address: 'Mumbai', department: 'Computer Application', course: 'Masters' },
+                { userId: '1003', name: 'Durgadas', address: 'Nagpur', department: 'Electrical', course: 'PhD' }
+            ];
+
+            $scope.user = {};
+
+            $scope.addUser = function() {
+                if ($scope.user.userId && $scope.user.name) {
+                    $scope.users.push(angular.copy($scope.user));
+
+                    $scope.user = {};
+                    $scope.registrationForm.$setPristine();
+                    $scope.registrationForm.$setUntouched();
+                }
+            };
+        });
+
+        app.directive('fileModel', ['$parse', function ($parse) {
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                    var model = $parse(attrs.fileModel);
+                    var modelSetter = model.assign;
+                    element.bind('change', function(){
+                        scope.$apply(function(){
+                            modelSetter(scope, element[0].files[0]);
+                        });
+                    });
+                }
+            };
+        }]);
+    </script>
+</body>
+</html>
